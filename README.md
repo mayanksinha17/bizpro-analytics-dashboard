@@ -1,151 +1,284 @@
-# BizPro — Business Intelligence. Simplified.
-## Sankar Group Front-End Development Internship Assignment
+# BizPro Premium
+### Business Intelligence. Simplified.
 
-> A premier, enterprise-grade SaaS product marketing platform and high-performance revenue operations dashboard built with **React 19**, **TypeScript**, **Vite 8**, **Tailwind CSS v4**, and **Recharts**.
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-0070F3?style=for-the-badge&logo=vercel&logoColor=white)](https://bizpro-analytics-dashboard.vercel.app/)
+[![React 19](https://img.shields.io/badge/React-19.3.1-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-7.0.2-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite 8](https://img.shields.io/badge/Vite-8.3.4-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-4.3.3-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Recharts](https://img.shields.io/badge/Recharts-3.10.1-22C55E?style=for-the-badge&logo=chartdotjs&logoColor=white)](https://recharts.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-F59E0B?style=for-the-badge)](LICENSE)
 
-[![Live Production Demo](https://img.shields.io/badge/Live%20Demo-Vercel-success?style=for-the-badge&logo=vercel)](https://bizpro-analytics-dashboard.vercel.app)
-[![React](https://img.shields.io/badge/React-19.3-61dafb?style=for-the-badge&logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178c6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-8.3-646cff?style=for-the-badge&logo=vite)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4.3-38bdf8?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+A modern, responsive SaaS business intelligence platform combining an interactive marketing website with a comprehensive revenue operations dashboard.
+
+BizPro delivers a seamless **dual-experience architecture**:
+- **`/` — Premium SaaS Marketing Website**: Modern conversion-focused marketing interface featuring high-contrast product storytelling, interactive Recharts preview frames, structured value pillars, transparent pricing, and a validated lead acquisition flow.
+- **`/app` — Interactive Business Analytics Dashboard**: Enterprise command center with 7 operational analytics panels, 9 dynamic date presets, multi-dimensional filters, period-over-period financial benchmarks, and deterministic rule-based operational intelligence.
 
 ---
 
 ## 🌐 Live Deployments
 
-* 🚀 **SaaS Product Landing Page**: [https://bizpro-analytics-dashboard.vercel.app/](https://bizpro-analytics-dashboard.vercel.app/)
-* 📊 **Enterprise Analytics Dashboard**: [https://bizpro-analytics-dashboard.vercel.app/app](https://bizpro-analytics-dashboard.vercel.app/app)
-* 💻 **GitHub Repository**: [https://github.com/mayanksinha17/bizpro-analytics-dashboard](https://github.com/mayanksinha17/bizpro-analytics-dashboard)
-
----
-
-## 📸 Visual Previews & Screenshots
-
-| Viewport | Preview File | Description |
+| Resource | Direct Link | Description |
 |---|---|---|
-| **Desktop Landing Page (1440px)** | [`screenshots/desktop.png`](screenshots/desktop.png) | High-contrast hero, value proof metrics, interactive product preview |
-| **Mobile Landing Page (390px)** | [`screenshots/mobile.png`](screenshots/mobile.png) | Fluid typography, collapsible drawer navigation, touch-friendly CTAs |
-| **Full Page Landing Showcase** | [`screenshots/fullpage.png`](screenshots/fullpage.png) | Complete SaaS narrative: Features, How It Works, Pricing, Contact, Footer |
-| **Analytics Command Center (`/app`)** | [`screenshots/dashboard-app.png`](screenshots/dashboard-app.png) | Executive dark theme, Smart Operational Intelligence banner, Recharts |
-| **Mobile Dashboard Experience (390px)** | [`screenshots/dashboard-mobile.png`](screenshots/dashboard-mobile.png) | Responsive cards, touch-friendly filter controls, stacked insights |
+| 🚀 **Live SaaS Website** | [https://bizpro-analytics-dashboard.vercel.app/](https://bizpro-analytics-dashboard.vercel.app/) | Marketing landing page with interactive previews and contact flow |
+| 📊 **Live Analytics Dashboard** | [https://bizpro-analytics-dashboard.vercel.app/app](https://bizpro-analytics-dashboard.vercel.app/app) | Full enterprise analytics command center (7 operational modules) |
+| 💻 **GitHub Repository** | [https://github.com/mayanksinha17/bizpro-analytics-dashboard](https://github.com/mayanksinha17/bizpro-analytics-dashboard) | Source code, configuration, and documentation |
 
 ---
 
-## 🎨 Design Choices & Challenges (5–8 Line Reflection)
+## 📸 Screenshot Showcase
 
-To elevate BizPro from a raw analytics interface to a commercial SaaS brand, we implemented an executive dark-navy (`#080d1a` / `#0f172a`) aesthetic energized by luminous electric-blue (`#2563eb` / `#3b82f6`) and violet accents, mirroring modern software leaders like Linear and Raycast. The primary architectural challenge was introducing dual-route capability (`/` for marketing, `/app` for the analytical engine) while preserving the dashboard's deterministic in-memory state, complex Recharts visualizations, and global filter context without rewriting working business logic or introducing heavy third-party routing dependencies. We solved this with a zero-dependency `NavigationProvider` that synchronizes browser history via `pushState` and `popstate`, backed by absolute asset resolution (`base: "/"`) and Vercel edge rewrites. To ensure trust without fabricating customer claims, the hero and feature sections highlight verified architectural realities—100% client-side privacy, audit-grade GST reconciliation, and sub-millisecond filtering. Finally, responsive typography and interactive components (tabbed live Recharts previews and a fully validated contact flow) guarantee fluid usability across 375px to 1440px displays.
+### Desktop Landing Page (1440px)
+High-contrast hero section with floating KPI metric badges, primary & secondary action triggers, and interactive product preview.
 
----
-
-## 📊 Project Overview
-
-**BizPro** is a comprehensive Business Intelligence and Revenue Operations platform designed for leadership teams, sales executives, and operations managers. It transforms fragmented operational data into actionable strategic clarity across the entire commercial lifecycle:
-
-1. **Top-of-Funnel Lead Management**: Multi-channel acquisition tracking and 3-stage conversion velocity.
-2. **Sales Quotations & Deal Pipeline**: Quote-to-deal conversion ratios and deal value forecasting.
-3. **Operational Orders & Fulfillment**: Team workload distribution and SLA throughput tracking.
-4. **Cash Settlement & Payment Reconciliation**: Aging receivables tracking, GST tax calculation, and collections balancing.
-
-The application runs on a **100% frontend deterministic relational data model** (utilizing seeded pseudorandom generation), ensuring reproducible, internally coherent business metrics without requiring external database dependencies or backend infrastructure.
+![Desktop Landing Page](screenshots/desktop.png)
 
 ---
 
-## 🚀 Key Features
+### Mobile Landing Page (390px)
+Touch-optimized viewport layout with fluid responsive typography, accessible navigation drawer, and vertically stacked feature cards.
 
-### 1. SaaS Marketing Landing Page (`/`)
-* **Navbar**: Responsive glassmorphic navigation with BizPro branding, quick jump links (`Features`, `How It Works`, `Preview`, `Pricing`, `Contact`), a prominent "Launch Dashboard" CTA, and a mobile hamburger drawer with keyboard accessibility (`Esc` dismiss).
-* **Hero Section**: High-impact headline (*"Turn Business Data Into Better Decisions"*), product positioning (*"BizPro — Business Intelligence. Simplified."*), dual CTAs, verified trust proof badges (Sub-Millisecond latency, Audit-Grade logic, 100% Privacy, 7 Core Modules), and a floating dashboard metric preview.
-* **Interactive Dashboard Preview**: Realistic macOS-styled application frame featuring live interactive Recharts visualizations (Monthly Revenue vs. Target), 3-stage Lead Funnel metrics, and Settlement status with dynamic tab switching.
-* **4 Core Operational Pillars**:
-  * 📈 **Revenue Analytics**: End-to-end financial visibility, period-over-period comparisons (MoM, QoQ), profit margins, and cash collection trajectories.
-  * 👥 **Lead Management**: 3-stage conversion funnels (Total Inquiries → Qualified Proposals → Converted Retainers) and channel attribution (Google Ads, Social, Referrals, Inbound).
-  * 💳 **Payment Tracking**: Reconcile settled invoices vs pending receivables, 18% standard GST calculation, invoice reconciliation, and zero-leakage collection pipelines.
-  * 🎛️ **Smart Filtering**: 9 date presets, departmental slicing (Sales, Operations, Finance, Management), 8 service category breakdowns, and reactive in-memory recalculation.
-* **How It Works**: 3-step structured methodology (*01: Understand Business Data*, *02: Analyze Performance*, *03: Make Informed Decisions*) with visual timeline connectors and capability callouts.
-* **Pricing Tiers**:
-  * **Starter Plan**: Free (₹0 / forever) — Complete access to all 7 modules, 9 date presets, and local report exports. Direct "Launch Starter Free" CTA into `/app`.
-  * **Professional Plan**: ₹999/month (Illustrative) — Multi-user workspaces, weekly executive email digests, and priority SLAs. Direct "Request Professional Access" CTA linking into the contact form.
-  * **Illustrative Notice Banner**: Explicit transparency disclosure that all pricing is simulated for technical evaluation.
-  * **Collapsible FAQ Accordion**: Resolves common technical questions regarding data architecture, export options, and privacy.
-* **Contact & Demo Request**:
-  * Form fields: Full Name, Work Email, Company Name, Interested Plan/Tier, Message.
-  * Comprehensive client-side validation (required checks, email regex format, minimum character length guards).
-  * Real-time inline error notifications with `AlertCircle` indicators.
-  * Animated dispatch state (~700ms simulation) followed by an enterprise confirmation card and "Send Another Inquiry" action.
-  * Direct contact details (email, response SLA &lt; 2 hrs, Bangalore office location).
-* **Footer**: Complete brand mark, structured link columns (Product, Modules, Internship Submission), operational status indicator (*"● All Systems Operational"*), and smooth "Back to Top" scrolling.
-
-### 2. Original Enterprise Analytics Dashboard (`/app`)
-* **Preserved Full Functionality**: 7 dedicated analytical panels (`OverviewPanel`, `LeadsPanel`, `QuotationsPanel`, `DealsPanel`, `OrdersPanel`, `PaymentsPanel`, `TeamPanel`).
-* **Global Filter Suite**: 9 date presets (*Today*, *Last 7D*, *Last 30D*, *This Month*, *Last 3M*, *Last 6M*, *This Year*, *Last 12M*, and *Custom Range*), Department filters, Service Category filters, and Employee filters.
-* **Two-Way Navigation Bridge**: Added sleek "← Back to Landing Page" button in the Sidebar and "Marketing Site" pill in the TopBar for effortless switching between marketing and operational modes.
+<p align="center">
+  <img src="screenshots/mobile.png" alt="Mobile Landing Page" width="380" />
+</p>
 
 ---
 
-## 🛠 Tech Stack
+### Full Website Preview
+Comprehensive end-to-end product narrative: Navigation, Hero, Live Dashboard Preview, 4 Feature Pillars, 3-Step Workflow, Pricing, Validated Contact Form, and Footer.
 
-| Layer | Technology | Version | Purpose |
-|---|---|---|---|
-| **Framework** | [React](https://react.dev/) | `19.3.1` | Modern declarative UI component architecture |
-| **Language** | [TypeScript](https://www.typescriptlang.org/) | `~7.0.2` | Static typing, interface contracts, and type safety |
-| **Bundler & Tooling** | [Vite](https://vitejs.dev/) | `^8.3.4` | Next-generation fast HMR and optimized production bundling |
-| **Styling** | [Tailwind CSS](https://tailwindcss.com/) | `^4.3.3` | Utility-first CSS engine with `@tailwindcss/vite` |
-| **Data Visualizations** | [Recharts](https://recharts.org/) | `^3.10.1` | Declarative SVG charting for revenue and pipeline analytics |
-| **Date Manipulation** | [date-fns](https://date-fns.org/) | `^4.4.0` | Comprehensive date arithmetic and preset calculations |
-| **Icons** | [Lucide React](https://lucide.dev/) | `^1.59.0` | Crisp, accessible enterprise SVG iconography |
-| **Hosting & Edge** | [Vercel](https://vercel.com/) | Static Edge | Edge SPA deployment with global wildcard URL rewrites |
+![Full Website Preview](screenshots/fullpage.png)
+
+---
+
+### Executive Analytics Dashboard (`/app`)
+Enterprise dark-mode command center featuring the Smart Operational Intelligence banner, global multi-filter controls, KPI cards, and Recharts financial visualizations.
+
+![Executive Analytics Dashboard](screenshots/dashboard-app.png)
+
+---
+
+### Mobile Dashboard Experience (390px)
+Responsive analytics layout with adaptive horizontal filter scrolling, full-width KPI metric cards, and responsive chart viewports.
+
+<p align="center">
+  <img src="screenshots/dashboard-mobile.png" alt="Mobile Dashboard Experience" width="380" />
+</p>
+
+---
+
+## ✨ Key Features
+
+### 1. SaaS Marketing Website (`/`)
+* **Responsive Navigation**: Sticky glassmorphic navbar with BizPro branding, section jump links (`Features`, `How It Works`, `Preview`, `Pricing`, `Contact`), quick `Launch Dashboard` action button, and a mobile sliding drawer with keyboard `Escape` dismiss.
+* **Interactive Hero Section**: Value proposition headline (*"Turn Business Data Into Better Decisions"*), product positioning (*"BizPro — Business Intelligence. Simplified."*), dual conversion CTAs, floating live KPI cards, and verified architectural proof tags (Sub-millisecond latency, Audit-grade logic, 100% Client-side privacy).
+* **Interactive Dashboard Preview**: Mac-inspired application frame showcasing live interactive Recharts visualizations with 3 selectable operational views:
+  * *Revenue Trend*: Monthly target vs. realized revenue progression.
+  * *Lead Funnel*: 3-tier conversion progression (Inquiries → Proposals → Retainers).
+  * *Collections & Services*: Settlement integrity and departmental revenue distributions.
+* **Feature Showcase (4 Core Pillars)**:
+  * 📈 **Revenue Analytics**: End-to-end financial visibility, period-over-period comparisons (MoM, QoQ), and profit margin tracking.
+  * 👥 **Lead Management**: Multi-channel lead attribution (Google Ads, Social, Referrals, Inbound) and conversion velocity.
+  * 💳 **Payment Tracking**: Reconcile settled invoices against pending receivables with 18% standard GST tax balancing.
+  * 🎛️ **Smart Filtering**: Reactive in-memory recalculation across date presets, departments, and service categories.
+* **How It Works**: 3-step structured methodology (*01: Understand Business Data*, *02: Analyze Performance*, *03: Make Informed Decisions*) with visual progression connectors and capability badges.
+* **Transparent Pricing**:
+  * **Starter Plan (Free forever)**: Complete access to all 7 modules, 9 date presets, and local report exports. Direct CTA routes into `/app`.
+  * **Professional Plan (₹999/month - Illustrative)**: Multi-user workspace simulation, weekly executive email digests, and priority SLAs. Routes directly into the inquiry form.
+  * **Transparency Notice Banner**: Explicit notice that pricing figures are illustrative for technical evaluation.
+  * **Interactive FAQ Accordion**: Resolves common questions regarding data persistence, export capabilities, and client-side architecture.
+* **Validated Contact / Demo Request**:
+  * Fields: Full Name, Work Email, Company Name, Interested Plan, and Message.
+  * Client-side validation: Required field guards, RFC-compliant email regex, and minimum character constraints.
+  * Animated dispatch state (~700ms simulation) followed by an enterprise confirmation card and reset option.
+* **Footer**: Brand identity, categorized navigation columns (Product, Modules, Assignment), operational status beacon (*"● All Systems Operational"*), and smooth "Back to Top" scrolling.
+
+---
+
+### 2. Analytics Dashboard (`/app`)
+Seven specialized analytical panels providing operational clarity across the entire commercial lifecycle:
+
+1. **Executive Overview**: High-level financial KPIs (Total Revenue, Net Margin, Collection Efficiency, Pipeline Velocity), revenue vs. target charts, and departmental breakdowns.
+2. **Lead Analytics**: Acquisition volume by source channel, conversion rate benchmarks, and lead status distribution.
+3. **Quotation Analytics**: Total proposed value, quotation status tracking (Draft, Sent, Viewed, Accepted, Rejected), and quote-to-deal transition rates.
+4. **Deals & Revenue Pipeline**: Stage-by-stage pipeline distribution (Discovery, Proposal, Negotiation, Won, Lost) and average deal size.
+5. **Orders & Operations**: Workload allocation by team member, fulfillment status tracking, and SLA throughput.
+6. **Payments & Collections**: Settled cash flows vs. outstanding accounts receivable, overdue invoice aging, and 18% GST reconciliation.
+7. **Sales Team Analytics**: Individual rep quota attainment, deal closing velocity, and revenue contribution metrics.
+
+---
+
+### 3. Smart Operational Intelligence Engine
+The dashboard includes an intelligent executive insight banner powered by `src/analytics/insights.ts`. 
+
+> [!NOTE]
+> **Deterministic Rule-Based Intelligence**: All insights are generated entirely on the client side using mathematical business logic and statistical formulas evaluated against in-memory relational state. No external LLMs, OpenAI keys, or generative AI APIs are used.
+
+The engine computes four deterministic insight categories:
+1. **Commercial Momentum**: Evaluates Period-over-Period (PoP) revenue velocity against the preceding equivalent date window, surfacing growth momentum or revenue volatility flags alongside top contributing service categories.
+2. **Pipeline Velocity and Friction**: Evaluates 3-tier drop-off ratios (Leads → Quotations Sent → Won Deals) and quantifies active proposals awaiting client signature.
+3. **Fiscal Integrity and Collections Balancing**: Cross-reconciles settled payment ledgers against active invoice receivables with strict 18% GST balancing, auditing collection efficiency percentage.
+4. **Strategic Recommendations**: Synthesizes high-yield deal stages with active operational fulfillment orders to deliver clear, actionable operational next steps.
+
+---
+
+### 4. Interactive Analytics & Visualizations
+* **Recharts SVG Visualizations**: Composed charts, area charts, bar charts, and pie charts with responsive containers and custom dark-mode tooltips.
+* **Global Date Presets**: 9 date presets (*Today*, *Last 7D*, *Last 30D*, *This Month*, *Last 3M*, *Last 6M*, *This Year*, *Last 12M*, and *Custom Range*) powered by `date-fns`.
+* **Multi-Dimensional Filters**: Instant filtering by Department (Sales, Operations, Finance, Management), Service Category (8 categories), and Sales Representative.
+* **Period-over-Period (PoP) Comparisons**: Dynamic baseline calculations comparing current metrics to equivalent historical windows with percentage deltas and positive/negative indicators.
+* **Custom Chart Tooltips**: Enterprise glassmorphic tooltips displaying formatted Indian Rupee (`₹`) values and precise percentages.
+
+---
+
+## 🛠 Technology Stack
+
+The project strictly utilizes modern, production-grade web technologies installed and defined in [`package.json`](package.json):
+
+| Dependency | Version | Purpose |
+|---|---|---|
+| **[React](https://react.dev/)** | `^19.3.1` | Modern declarative UI component architecture with React 19 features |
+| **[React DOM](https://react.dev/)** | `^19.3.1` | React DOM rendering engine |
+| **[TypeScript](https://www.typescriptlang.org/)** | `~7.0.2` | Static typing, interface definitions, and compile-time contract safety |
+| **[Vite](https://vitejs.dev/)** | `^8.3.4` | High-performance build tool, lightning-fast HMR, and chunk optimization |
+| **[Tailwind CSS](https://tailwindcss.com/)** | `^4.3.3` | Modern utility-first CSS styling engine |
+| **[@tailwindcss/vite](https://tailwindcss.com/)** | `^4.3.3` | Native Vite integration plugin for Tailwind CSS v4 |
+| **[Recharts](https://recharts.org/)** | `^3.10.1` | Declarative SVG charting library for responsive business visualizations |
+| **[Lucide React](https://lucide.dev/)** | `^1.59.0` | Accessible, consistent enterprise SVG icons |
+| **[date-fns](https://date-fns.org/)** | `^4.4.0` | Modular date arithmetic, range comparisons, and preset formatting |
+| **[Vercel](https://vercel.com/)** | Static Edge | Production edge deployment with wildcard SPA URL rewriting |
 
 ---
 
 ## 🏛 Architecture & Routing
 
+BizPro uses a zero-dependency client-side routing model managed via `src/context/NavigationContext.tsx`. It synchronizes browser history via HTML5 `pushState` and `popstate` events without requiring external routing libraries, ensuring zero bundle bloat and sub-millisecond route transitions.
+
+```mermaid
+flowchart TD
+    subgraph Browser ["Client Browser URL"]
+        URL["window.location.pathname"]
+    end
+
+    subgraph Navigation ["Zero-Dependency Navigation Layer"]
+        NavContext["NavigationProvider (src/context/NavigationContext.tsx)"]
+        History["pushState / popstate Listeners"]
+    end
+
+    subgraph RootRouter ["App.tsx Root Router"]
+        RouterSwitch{"Path Evaluation"}
+    end
+
+    subgraph LandingSite ["SaaS Marketing Platform ( / )"]
+        LP["LandingPage.tsx"]
+        LP --> Navbar["Navbar.tsx"]
+        LP --> Hero["Hero.tsx"]
+        LP --> Preview["DashboardPreview.tsx"]
+        LP --> Features["Features.tsx"]
+        LP --> HowItWorks["HowItWorks.tsx"]
+        LP --> Pricing["Pricing.tsx"]
+        LP --> Contact["Contact.tsx"]
+        LP --> Footer["Footer.tsx"]
+    end
+
+    subgraph AnalyticsApp ["Revenue Operations Dashboard ( /app )"]
+        DP["DashboardProvider (src/context/DashboardContext.tsx)"]
+        Shell["Dashboard Shell (Sidebar.tsx + TopBar.tsx)"]
+        InsightsEngine["Smart Operational Intelligence (src/analytics/insights.ts)"]
+        Panels["7 Analytics Modules\nOverviewPanel | LeadsPanel | QuotationsPanel\nDealsPanel | OrdersPanel | PaymentsPanel | TeamPanel"]
+        DP --> Shell
+        DP --> InsightsEngine
+        DP --> Panels
+    end
+
+    subgraph DataLayer ["Data & State Layer"]
+        DataGen["Seeded Relational Data Generator (src/data/generator.ts)"]
+        Utils["Analytics Computations & Formatters (src/analytics/utils.ts, src/utils/format.ts)"]
+        DataGen --> DP
+        Utils --> DP
+        Utils --> LP
+    end
+
+    URL --> NavContext
+    NavContext --> History
+    History --> RouterSwitch
+    RouterSwitch -->|"Path === '/app'"| AnalyticsApp
+    RouterSwitch -->|"Path === '/' (or other)"| LandingSite
+    Navbar -.->|"Navigate to /app"| NavContext
+    Hero -.->|"Launch CTA"| NavContext
+    Shell -.->|"Back to Marketing"| NavContext
+```
+
+### Directory Structure
+
 ```
 bizpro-analytics-dashboard/
-├── index.html                  # HTML entry point with meta tags & Google Inter font
-├── vite.config.ts              # Vite configuration (base: "/", Tailwind v4 plugin)
-├── vercel.json                 # Vercel SPA rewrite rule (/(.*) -> /index.html)
+├── index.html                       # HTML entry point with meta tags & Inter typography
+├── package.json                     # Project manifest and exact dependency definitions
+├── tsconfig.json                    # TypeScript compiler configuration
+├── vite.config.ts                   # Vite configuration (Rolldown chunking, Tailwind plugin)
+├── vercel.json                      # Vercel SPA rewrite rule (/(.*) -> /index.html)
+├── screenshots/                     # Verified documentation previews
+│   ├── desktop.png                  # Desktop landing page (1440x900)
+│   ├── mobile.png                   # Mobile landing page (390x844)
+│   ├── fullpage.png                 # Full landing page layout (1440x4200)
+│   ├── dashboard-app.png            # Analytics dashboard (1440x900)
+│   └── dashboard-mobile.png         # Mobile dashboard experience (390x844)
 ├── src/
-│   ├── App.tsx                 # Root router: switches between LandingPage (/) and Dashboard (/app)
-│   ├── main.tsx                # React DOM root entry
-│   ├── index.css               # Design system tokens, glassmorphic utilities, Tailwind imports
+│   ├── App.tsx                      # Root router: renders LandingPage (/) or Dashboard (/app)
+│   ├── main.tsx                     # React DOM application mount
+│   ├── index.css                    # Design tokens, glassmorphic utilities, Tailwind imports
+│   ├── vite-env.d.ts                # Vite client environment type declarations
+│   ├── analytics/
+│   │   ├── insights.ts              # Deterministic rule-based operational intelligence engine
+│   │   └── utils.ts                 # Analytical calculations, filter predicates, and KPI aggregators
 │   ├── components/
-│   │   ├── landing/            # SaaS Marketing Landing Page Modules
-│   │   │   ├── Navbar.tsx
-│   │   │   ├── Hero.tsx
-│   │   │   ├── DashboardPreview.tsx
-│   │   │   ├── Features.tsx
-│   │   │   ├── HowItWorks.tsx
-│   │   │   ├── Pricing.tsx
-│   │   │   ├── Contact.tsx
-│   │   │   ├── Footer.tsx
-│   │   │   └── LandingPage.tsx
-│   │   ├── dashboard/          # Analytics Dashboard Modules
-│   │   │   ├── OverviewPanel.tsx
-│   │   │   ├── LeadsPanel.tsx
-│   │   │   ├── QuotationsPanel.tsx
-│   │   │   ├── DealsPanel.tsx
-│   │   │   ├── OrdersPanel.tsx
-│   │   │   ├── PaymentsPanel.tsx
-│   │   │   └── TeamPanel.tsx
-│   │   ├── layout/             # Dashboard Shell (Sidebar & TopBar with navigation bridge)
-│   │   └── shared/             # Reusable UI atoms (KPICard, StatusBadge, EmptyState)
+│   │   ├── landing/                 # SaaS Marketing Landing Page Modules
+│   │   │   ├── Navbar.tsx           # Glassmorphic navbar with mobile slide-out menu
+│   │   │   ├── Hero.tsx             # Value proposition hero with floating KPI cards
+│   │   │   ├── DashboardPreview.tsx # Interactive live Recharts preview frame
+│   │   │   ├── Features.tsx         # 4 Core operational capability pillars
+│   │   │   ├── HowItWorks.tsx       # 3-Step operational methodology
+│   │   │   ├── Pricing.tsx          # Starter & Professional tiers + FAQ accordion
+│   │   │   ├── Contact.tsx          # Validated inquiry form with animated states
+│   │   │   ├── Footer.tsx           # Complete footer with system health status
+│   │   │   └── LandingPage.tsx      # Landing page layout orchestrator
+│   │   ├── dashboard/               # 7 Dedicated Analytics Panels
+│   │   │   ├── OverviewPanel.tsx    # Executive business health & revenue charts
+│   │   │   ├── LeadsPanel.tsx       # Lead acquisition, conversion funnels & sources
+│   │   │   ├── QuotationsPanel.tsx  # Quote volume, status tracking & conversion
+│   │   │   ├── DealsPanel.tsx       # Stage-by-stage revenue pipeline & forecasts
+│   │   │   ├── OrdersPanel.tsx      # Operational orders, SLAs & team workload
+│   │   │   ├── PaymentsPanel.tsx    # Invoices, receivables & 18% GST reconciliation
+│   │   │   └── TeamPanel.tsx        # Sales representative quota performance
+│   │   ├── layout/                  # Dashboard Layout Shell
+│   │   │   ├── Sidebar.tsx          # Collapsible navigation sidebar with route switch
+│   │   │   └── TopBar.tsx           # Global filter controls, search & view toggle
+│   │   └── shared/                  # Reusable Design System Components
+│   │       ├── ChartTooltip.tsx     # Custom glassmorphic Recharts tooltip
+│   │       ├── EmptyState.tsx       # Accessible empty data placeholder
+│   │       ├── KPICard.tsx          # Metric card with PoP deltas and progress indicators
+│   │       ├── SmartInsightCard.tsx # Rule-based operational intelligence card
+│   │       └── StatusBadge.tsx      # Color-coded operational status indicator
 │   ├── context/
-│   │   ├── DashboardContext.tsx # Global analytics state, filters, and records
-│   │   └── NavigationContext.tsx# Zero-dependency browser routing & smooth scroll
+│   │   ├── DashboardContext.tsx     # Global analytics state, filters, and active tab
+│   │   └── NavigationContext.tsx    # Zero-dependency browser routing & anchor scroll
 │   ├── data/
-│   │   └── generator.ts        # Seeded deterministic relational data generator
+│   │   └── generator.ts             # Deterministic relational data generator (seeded)
+│   ├── types/
+│   │   └── index.ts                 # Comprehensive TypeScript interfaces & domain types
 │   └── utils/
-│       └── format.ts           # Indian Rupee (₹) currency & number formatting
+│       └── format.ts                # Indian Rupee (₹) currency & percentage formatting
 ```
 
 ---
 
-## 💻 Installation & Development
+## 💻 Installation & Setup
 
 ### Prerequisites
-* **Node.js**: v18.0.0 or higher
-* **npm**: v9.0.0 or higher
+* **Node.js**: `v18.0.0` or higher (compatible with Node 18, 20, 22, and 24)
+* **npm**: `v9.0.0` or higher
 
 ### 1. Clone the Repository
 ```bash
@@ -162,50 +295,80 @@ npm install
 ```bash
 npm run dev
 ```
-Open [http://localhost:5173/](http://localhost:5173/) in your browser.
+
+Open [http://localhost:5173/](http://localhost:5173/) in your web browser.
 
 ---
 
-## 🏗️ Production Build & Verification
+## 🏗 Build & Verification
 
-### 1. Run Type Checking
+### 1. TypeScript Verification
+Run type checking across the entire TypeScript codebase:
 ```bash
 npx tsc --noEmit
 ```
 
 ### 2. Build for Production
+Generate an optimized static production bundle:
 ```bash
 npm run build
 ```
-The optimized static bundle will be generated in `dist/`.
+Production assets are generated in `dist/` with optimized code splitting (`charts`, `icons`, `date-fns`). A fallback `200.html` is automatically copied to support single-page application routing on static hosts.
 
 ### 3. Preview Production Build Locally
+Verify the production build locally:
 ```bash
 npm run preview
 ```
-Open [http://localhost:4173/](http://localhost:4173/) to verify the production build.
+Open [http://localhost:4173/](http://localhost:4173/) to inspect the production deployment build.
 
 ---
 
-## 🧪 Comprehensive Verification Checklist
+## 📱 Responsive Design Breakpoints
 
-- [x] **Root Route (`/`)**: Displays the new SaaS Marketing Landing Page.
-- [x] **App Route (`/app`)**: Displays the full original 7-module Analytics Dashboard.
-- [x] **Navigation Bridge**: Seamless two-way movement between `/` and `/app` via TopBar and Sidebar.
-- [x] **Navbar Links**: Working smooth scroll for `#features`, `#how-it-works`, `#preview`, `#pricing`, `#contact`.
-- [x] **Mobile Drawer Navigation**: Touch-friendly hamburger menu with keyboard `Esc` dismiss and backdrop lock.
-- [x] **Dashboard Preview**: Interactive tab switching (Revenue Trend, Lead Funnel, Collections & Services) with live Recharts rendering.
-- [x] **4 Core Features**: Revenue Analytics, Lead Management, Payment Tracking, and Smart Filtering.
-- [x] **3-Step Workflow**: Understand Business Data, Analyze Performance, Make Informed Decisions.
-- [x] **Pricing Tiers**: Starter (Free) and Professional (₹999/mo) with explicit illustrative labeling.
-- [x] **Contact Form Validation**: Required field check, regex email check, minimum character lengths, animated dispatch, and success card.
-- [x] **Responsive Layouts Tested**: Verified at 375px, 390px, 768px, 1024px, and 1440px with zero horizontal viewport leakage.
-- [x] **Vercel Routing**: Configured with wildcard edge rewrites and root asset paths (`base: "/"`).
+The user interface has been engineered and visually validated across six standard responsive viewport breakpoints:
+
+| Breakpoint | Viewport Width | Device Target | Verification Status |
+|---|---|---|---|
+| **Compact Mobile** | `375px` | iPhone SE, smaller smartphones | Verified — no horizontal overflow |
+| **Modern Mobile** | `390px` | iPhone 14/15/16, Galaxy S-series | Verified — touch-friendly controls |
+| **Tablet** | `768px` | iPad Portrait, Android tablets | Verified — 2-column adaptive layout |
+| **Small Laptop** | `1024px` | iPad Pro Landscape, MacBook Air | Verified — full desktop navigation |
+| **Desktop** | `1280px` | Standard desktop monitors | Verified — full analytics visualization |
+| **High-Resolution** | `1440px` | Large desktop displays | Verified — optimal typographic hierarchy |
 
 ---
 
-## 📄 License & Credits
+## 🔒 Important Transparency & Architectural Disclosures
 
-* **Assignment**: Sankar Group Front-End Development Internship Assignment
-* **Author**: Mayank Kumar Sinha ([mk3631780@gmail.com](mailto:mk3631780@gmail.com))
-* **License**: [MIT](LICENSE)
+To uphold the highest standards of technical integrity and documentation transparency:
+
+1. **Demonstration Data**: All operational entities (Leads, Quotations, Deals, Orders, Invoices, Payments, and Employees) are generated deterministically in memory at runtime via `src/data/generator.ts` using a seeded pseudorandom algorithm. No external SQL/NoSQL databases or REST endpoints are queried.
+2. **Rule-Based Intelligence**: The Smart Operational Intelligence engine (`src/analytics/insights.ts`) evaluates deterministic mathematical rules against in-memory relational state. It does **not** make calls to OpenAI, Claude, Gemini, or any external generative LLM service.
+3. **Simulated Contact Form**: The contact and demo request form performs client-side field validation and simulated asynchronous submission (`setTimeout`). Submitted inquiries are not persisted to an external email service or database.
+4. **Illustrative Pricing**: The Free Starter and ₹999/month Professional tiers are displayed strictly for product presentation and internship evaluation purposes. No commercial payment gateway is attached.
+5. **Zero External Subscriptions**: The entire application runs client-side with zero external SaaS dependencies, subscription keys, or hidden backend infrastructure.
+
+---
+
+## 🎓 Sankar Group Internship Context
+
+This project was developed for the **Sankar Group Front-End Development Internship Assignment**.
+
+### Key Deliverables Satisfied
+- [x] **Dual-Route SaaS Architecture**: Transformed existing analytics dashboard into a dual-mode application with a premium marketing landing page at `/` and the enterprise dashboard preserved at `/app`.
+- [x] **Brand & Visual Identity**: Deep navy, white, and electric blue color palette with subtle gradients, refined glassmorphic surfaces, and professional typography.
+- [x] **Modular Component Structure**: 8 separate marketing components in `src/components/landing/` and 7 analytics panels in `src/components/dashboard/`.
+- [x] **Interactive Previews**: Realistic dashboard preview showcasing live interactive Recharts visualizations.
+- [x] **Working Contact Experience**: Validated contact form with instant field validation, error indicators, and submission confirmation.
+- [x] **Documentation Integrity**: Complete technical documentation, screenshots, and architecture diagrams.
+
+---
+
+## 👤 Author & License
+
+* **Author**: Mayank Kumar Sinha
+* **Email**: [mk3631780@gmail.com](mailto:mk3631780@gmail.com)
+* **GitHub**: [@mayanksinha17](https://github.com/mayanksinha17)
+* **Project Repository**: [bizpro-analytics-dashboard](https://github.com/mayanksinha17/bizpro-analytics-dashboard)
+* **License**: [MIT](LICENSE) — Feel free to use, modify, and distribute this codebase for educational and evaluation purposes.

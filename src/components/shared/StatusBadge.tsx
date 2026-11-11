@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 
 const STATUS_STYLES: Record<string, { bg: string; color: string; border: string }> = {
   "New":            { bg: "rgba(59, 130, 246, 0.15)",  color: "#60a5fa", border: "rgba(59, 130, 246, 0.3)" },

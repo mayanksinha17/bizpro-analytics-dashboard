@@ -131,3 +131,4 @@ export default function SmartInsightCard({ insights }: SmartInsightCardProps) {
     </div>
   );
 }
+
