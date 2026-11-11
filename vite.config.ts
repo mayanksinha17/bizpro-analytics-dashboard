@@ -5,5 +5,22 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   base: "/",
   plugins: [react(), tailwindcss()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules/recharts")) {
+            return "charts";
+          }
+          if (id.includes("node_modules/lucide-react")) {
+            return "icons";
+          }
+          if (id.includes("node_modules/date-fns")) {
+            return "date";
+          }
+        },
+      },
+    },
+  },
 });
 

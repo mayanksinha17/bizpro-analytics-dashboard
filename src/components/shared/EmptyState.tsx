@@ -16,76 +16,23 @@ export default function EmptyState({
   const { resetFilters } = useDashboard();
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "3.5rem 1.5rem",
-        background: "white",
-        borderRadius: "0.75rem",
-        border: "1px dashed #e5e7eb",
-        textAlign: "center",
-        margin: "1rem 0",
-      }}
-    >
-      <div
-        style={{
-          width: 52,
-          height: 52,
-          borderRadius: "50%",
-          background: "#f3f4f6",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginBottom: "1rem",
-          color: "#9ca3af",
-        }}
-      >
+    <div className="flex flex-col items-center justify-center py-16 px-6 rounded-2xl bg-[#0f172a]/70 border border-dashed border-white/[0.12] text-center my-4 backdrop-blur-md">
+      <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-4 text-blue-400">
         <FilterX size={26} />
       </div>
-      <h3
-        style={{
-          fontSize: "1rem",
-          fontWeight: 600,
-          color: "#1f2937",
-          marginBottom: "0.375rem",
-        }}
-      >
+      <h3 className="text-base font-bold text-white mb-1.5">
         {title}
       </h3>
-      <p
-        style={{
-          fontSize: "0.8125rem",
-          color: "#6b7280",
-          maxWidth: 420,
-          lineHeight: 1.5,
-          marginBottom: showReset ? "1.25rem" : 0,
-        }}
-      >
+      <p className="text-xs sm:text-sm text-slate-400 max-w-md leading-relaxed mb-6">
         {message}
       </p>
       {showReset && (
         <button
           onClick={resetFilters}
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.5rem",
-            padding: "0.45rem 0.9rem",
-            background: "#2563eb",
-            color: "white",
-            borderRadius: "0.5rem",
-            border: "none",
-            fontSize: "0.8125rem",
-            fontWeight: 500,
-            cursor: "pointer",
-            boxShadow: "0 1px 2px rgba(37, 99, 235, 0.2)",
-          }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 shadow-md shadow-blue-600/20 transition-all transform hover:-translate-y-0.5"
         >
           <RotateCcw size={14} />
-          Reset All Filters
+          <span>Reset All Active Filters</span>
         </button>
       )}
     </div>

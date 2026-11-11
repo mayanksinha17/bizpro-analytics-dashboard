@@ -65,8 +65,10 @@ export default function TopBar({ title }: TopBarProps) {
   const formattedRange = `${format(filter.dateRange.start, "dd MMM yy")} – ${format(filter.dateRange.end, "dd MMM yy")}`;
 
   const hasNonDefaultFilters =
-    Boolean(filter.employeeId || filter.department || filter.category) ||
-    activePreset !== "last12M";
+    activePreset !== "last12M" ||
+    filter.department !== null ||
+    filter.category !== null ||
+    filter.employeeId !== null;
 
   const handleApplyCustom = (e: React.FormEvent) => {
     e.preventDefault();
@@ -80,207 +82,117 @@ export default function TopBar({ title }: TopBarProps) {
   };
 
   return (
-    <header
-      style={{
-        background: "white",
-        borderBottom: "1px solid #e5e7eb",
-        padding: "0 1.25rem",
-        minHeight: 56,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        gap: "1rem",
-        position: "sticky",
-        top: 0,
-        zIndex: 30,
-        flexWrap: "wrap",
-      }}
-    >
+    <header className="sticky top-0 z-30 bg-[#090d18]/95 backdrop-blur-md border-b border-white/[0.08] px-4 sm:px-6 min-h-[58px] flex items-center justify-between gap-4 flex-wrap py-2">
       {/* Title & Mobile Toggle */}
-      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", minWidth: 160 }}>
+      <div className="flex items-center gap-3 min-w-[200px]">
         <button
           id="btn-mobile-menu"
-          className="mobile-menu-btn"
+          className="mobile-menu-btn md:hidden p-1.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-slate-300 hover:text-white"
           onClick={toggleMobileMenu}
           aria-label="Toggle navigation menu"
-          style={{
-            background: "transparent",
-            border: "1px solid #e5e7eb",
-            borderRadius: "0.375rem",
-            padding: "0.3rem",
-            cursor: "pointer",
-            display: "none",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#374151",
-          }}
         >
           <Menu size={18} />
         </button>
-        <h1
-          style={{
-            fontSize: "1rem",
-            fontWeight: 700,
-            color: "#111827",
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
-        >
-          {title}
-        </h1>
-        <span
-          style={{
-            fontSize: "0.7rem",
-            fontWeight: 500,
-            padding: "0.15rem 0.45rem",
-            background: "#eff6ff",
-            color: "#2563eb",
-            borderRadius: "0.375rem",
-            whiteSpace: "nowrap",
-          }}
-        >
-          {formattedRange}
-        </span>
+        <div>
+          <h1 className="text-sm sm:text-base font-bold text-white tracking-tight truncate">
+            {title}
+          </h1>
+          <span className="inline-flex items-center gap-1 text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-300 border border-blue-500/20 mt-0.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+            {formattedRange}
+          </span>
+        </div>
       </div>
 
-      {/* Filters row */}
-      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap", padding: "0.375rem 0" }}>
-        
+      {/* Filters suite */}
+      <div className="flex items-center gap-2 flex-wrap">
         {/* Date presets selector */}
-        <div ref={presetDropdownRef} style={{ position: "relative" }}>
+        <div ref={presetDropdownRef} className="relative">
           <button
             id="filter-date-preset-btn"
             aria-haspopup="true"
             aria-expanded={showPresetDropdown}
             aria-label="Select date range preset"
             onClick={() => setShowPresetDropdown(!showPresetDropdown)}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.375rem",
-              padding: "0.32rem 0.65rem",
-              borderRadius: "0.5rem",
-              border: "1px solid #e5e7eb",
-              background: activePreset !== "last12M" ? "#eff6ff" : "white",
-              color: activePreset !== "last12M" ? "#2563eb" : "#374151",
-              fontSize: "0.75rem",
-              fontWeight: 500,
-              cursor: "pointer",
-            }}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border transition-colors ${
+              activePreset !== "last12M"
+                ? "bg-blue-600/20 border-blue-500/40 text-blue-300"
+                : "bg-white/[0.04] border-white/[0.08] text-slate-300 hover:bg-white/[0.08] hover:text-white"
+            }`}
           >
-            <Calendar size={13} color={activePreset !== "last12M" ? "#2563eb" : "#6b7280"} />
+            <Calendar size={13} className={activePreset !== "last12M" ? "text-blue-400" : "text-slate-400"} />
             <span>{activePreset === "custom" ? "Custom Range" : (activePresetObj?.label ?? "Select Range")}</span>
-            <ChevronDown size={12} color="#9ca3af" />
+            <ChevronDown size={12} className="text-slate-400" />
           </button>
 
           {showPresetDropdown && (
-            <div
-              style={{
-                position: "absolute",
-                top: "calc(100% + 4px)",
-                left: 0,
-                width: 170,
-                background: "white",
-                borderRadius: "0.5rem",
-                boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-                border: "1px solid #e5e7eb",
-                padding: "0.35rem",
-                zIndex: 40,
-              }}
-            >
-              <div style={{ fontSize: "0.6875rem", fontWeight: 600, color: "#9ca3af", padding: "0.25rem 0.5rem" }}>
-                PRESETS
+            <div className="absolute top-[calc(100%+6px)] left-0 w-48 bg-[#0f172a] rounded-xl shadow-2xl shadow-black/80 border border-white/[0.12] p-1.5 z-40 animate-in fade-in zoom-in-95 duration-150">
+              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 py-1">
+                Date Presets
               </div>
-              {DATE_PRESETS.map(p => {
-                const isSelected = activePreset === p.id;
-                return (
-                  <button
-                    key={p.id}
-                    id={`preset-${p.id}`}
-                    onClick={() => {
-                      setPreset(p.id);
-                      setShowPresetDropdown(false);
-                    }}
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      padding: "0.35rem 0.5rem",
-                      borderRadius: "0.375rem",
-                      fontSize: "0.75rem",
-                      fontWeight: isSelected ? 600 : 400,
-                      color: isSelected ? "#2563eb" : "#374151",
-                      background: isSelected ? "#eff6ff" : "transparent",
-                      border: "none",
-                      cursor: "pointer",
-                      textAlign: "left",
-                    }}
-                  >
-                    <span>{p.label}</span>
-                    {isSelected && <Check size={13} color="#2563eb" />}
-                  </button>
-                );
-              })}
-              <div style={{ height: 1, background: "#f3f4f6", margin: "0.25rem 0" }} />
+              <div className="space-y-0.5 max-h-60 overflow-y-auto">
+                {DATE_PRESETS.map((p) => {
+                  const isSelected = activePreset === p.id;
+                  return (
+                    <button
+                      key={p.id}
+                      id={`preset-${p.id}`}
+                      onClick={() => {
+                        setPreset(p.id);
+                        setShowPresetDropdown(false);
+                      }}
+                      className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors text-left ${
+                        isSelected
+                          ? "bg-blue-600/25 text-blue-300 border border-blue-500/30 font-semibold"
+                          : "text-slate-300 hover:bg-white/[0.05] hover:text-white"
+                      }`}
+                    >
+                      <span>{p.label}</span>
+                      {isSelected && <Check size={13} className="text-blue-400" />}
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="h-px bg-white/[0.08] my-1" />
               <button
                 id="preset-custom-range"
                 onClick={() => {
                   setShowCustomModal(true);
                   setShowPresetDropdown(false);
                 }}
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  padding: "0.35rem 0.5rem",
-                  borderRadius: "0.375rem",
-                  fontSize: "0.75rem",
-                  fontWeight: activePreset === "custom" ? 600 : 400,
-                  color: activePreset === "custom" ? "#2563eb" : "#374151",
-                  background: activePreset === "custom" ? "#eff6ff" : "transparent",
-                  border: "none",
-                  cursor: "pointer",
-                  textAlign: "left",
-                }}
+                className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors text-left ${
+                  activePreset === "custom"
+                    ? "bg-blue-600/25 text-blue-300 border border-blue-500/30"
+                    : "text-slate-300 hover:bg-white/[0.05] hover:text-white"
+                }`}
               >
                 <span>Custom Date...</span>
-                {activePreset === "custom" && <Check size={13} color="#2563eb" />}
+                {activePreset === "custom" && <Check size={13} className="text-blue-400" />}
               </button>
             </div>
           )}
         </div>
 
-        {/* Quick pill presets for fastest 1-click access */}
-        <div style={{ display: "flex", gap: "0.25rem", background: "#f3f4f6", borderRadius: "0.5rem", padding: "0.2rem" }}>
+        {/* Quick pill presets */}
+        <div className="hidden lg:flex items-center gap-1 bg-white/[0.03] p-1 rounded-xl border border-white/[0.06]">
           {[
             { id: "today" as DatePreset, label: "Today" },
             { id: "last7" as DatePreset, label: "7D" },
             { id: "last30" as DatePreset, label: "30D" },
             { id: "thisMonth" as DatePreset, label: "This Mo" },
             { id: "last12M" as DatePreset, label: "12M" },
-          ].map(p => {
+          ].map((p) => {
             const isActive = activePreset === p.id;
             return (
               <button
                 key={p.id}
                 id={`quick-range-${p.id}`}
                 onClick={() => setPreset(p.id)}
-                style={{
-                  padding: "0.25rem 0.55rem",
-                  borderRadius: "0.375rem",
-                  fontSize: "0.72rem",
-                  fontWeight: isActive ? 600 : 400,
-                  color: isActive ? "#2563eb" : "#6b7280",
-                  background: isActive ? "white" : "transparent",
-                  border: "none",
-                  cursor: "pointer",
-                  boxShadow: isActive ? "0 1px 2px rgba(0,0,0,0.05)" : "none",
-                  transition: "all 0.15s",
-                  whiteSpace: "nowrap",
-                }}
+                className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all ${
+                  isActive
+                    ? "bg-blue-600 text-white shadow-sm shadow-blue-500/30 font-semibold"
+                    : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
+                }`}
               >
                 {p.label}
               </button>
@@ -289,301 +201,165 @@ export default function TopBar({ title }: TopBarProps) {
         </div>
 
         {/* Department filter */}
-        <div style={{ position: "relative" }}>
+        <div className="relative">
           <select
             id="filter-department"
             aria-label="Filter by department"
             value={filter.department ?? ""}
-            onChange={e => setDepartment((e.target.value as Department) || null)}
-            style={{
-              padding: "0.3rem 1.75rem 0.3rem 0.625rem",
-              borderRadius: "0.5rem",
-              border: "1px solid #e5e7eb",
-              background: filter.department ? "#eff6ff" : "white",
-              fontSize: "0.75rem",
-              color: filter.department ? "#2563eb" : "#374151",
-              fontWeight: filter.department ? 600 : 400,
-              cursor: "pointer",
-              appearance: "none",
-            }}
+            onChange={(e) => setDepartment((e.target.value as Department) || null)}
+            className={`pl-2.5 pr-7 py-1.5 rounded-xl text-xs font-medium border appearance-none transition-colors focus:outline-none focus:border-blue-500 ${
+              filter.department
+                ? "bg-blue-600/20 border-blue-500/40 text-blue-300"
+                : "bg-white/[0.04] border-white/[0.08] text-slate-300 hover:border-white/[0.15]"
+            }`}
           >
-            <option value="">All Departments</option>
-            {DEPARTMENTS.map(d => (
-              <option key={d} value={d}>{d}</option>
+            <option value="" className="bg-[#0f172a] text-slate-200">All Departments</option>
+            {DEPARTMENTS.map((d) => (
+              <option key={d} value={d} className="bg-[#0f172a] text-slate-200">{d}</option>
             ))}
           </select>
-          <ChevronDown
-            size={12}
-            style={{ position: "absolute", right: 6, top: "50%", transform: "translateY(-50%)", color: "#9ca3af", pointerEvents: "none" }}
-          />
+          <ChevronDown size={12} className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
         </div>
 
         {/* Category filter */}
-        <div style={{ position: "relative" }}>
+        <div className="relative">
           <select
             id="filter-category"
             aria-label="Filter by service category"
             value={filter.category ?? ""}
-            onChange={e => setCategory((e.target.value as ServiceCategory) || null)}
-            style={{
-              padding: "0.3rem 1.75rem 0.3rem 0.625rem",
-              borderRadius: "0.5rem",
-              border: "1px solid #e5e7eb",
-              background: filter.category ? "#eff6ff" : "white",
-              fontSize: "0.75rem",
-              color: filter.category ? "#2563eb" : "#374151",
-              fontWeight: filter.category ? 600 : 400,
-              cursor: "pointer",
-              appearance: "none",
-              maxWidth: 155,
-            }}
+            onChange={(e) => setCategory((e.target.value as ServiceCategory) || null)}
+            className={`pl-2.5 pr-7 py-1.5 rounded-xl text-xs font-medium border appearance-none transition-colors max-w-[145px] truncate focus:outline-none focus:border-blue-500 ${
+              filter.category
+                ? "bg-blue-600/20 border-blue-500/40 text-blue-300"
+                : "bg-white/[0.04] border-white/[0.08] text-slate-300 hover:border-white/[0.15]"
+            }`}
           >
-            <option value="">All Services</option>
-            {CATEGORIES.map(c => (
-              <option key={c} value={c}>{c}</option>
+            <option value="" className="bg-[#0f172a] text-slate-200">All Services</option>
+            {CATEGORIES.map((c) => (
+              <option key={c} value={c} className="bg-[#0f172a] text-slate-200">{c}</option>
             ))}
           </select>
-          <ChevronDown
-            size={12}
-            style={{ position: "absolute", right: 6, top: "50%", transform: "translateY(-50%)", color: "#9ca3af", pointerEvents: "none" }}
-          />
+          <ChevronDown size={12} className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
         </div>
 
         {/* Employee filter */}
-        <div style={{ position: "relative" }}>
+        <div className="relative">
           <select
             id="filter-employee"
             aria-label="Filter by team member"
             value={filter.employeeId ?? ""}
-            onChange={e => setEmployee(e.target.value || null)}
-            style={{
-              padding: "0.3rem 1.75rem 0.3rem 0.625rem",
-              borderRadius: "0.5rem",
-              border: "1px solid #e5e7eb",
-              background: filter.employeeId ? "#eff6ff" : "white",
-              fontSize: "0.75rem",
-              color: filter.employeeId ? "#2563eb" : "#374151",
-              fontWeight: filter.employeeId ? 600 : 400,
-              cursor: "pointer",
-              appearance: "none",
-              maxWidth: 140,
-            }}
+            onChange={(e) => setEmployee(e.target.value || null)}
+            className={`pl-2.5 pr-7 py-1.5 rounded-xl text-xs font-medium border appearance-none transition-colors max-w-[130px] truncate focus:outline-none focus:border-blue-500 ${
+              filter.employeeId
+                ? "bg-blue-600/20 border-blue-500/40 text-blue-300"
+                : "bg-white/[0.04] border-white/[0.08] text-slate-300 hover:border-white/[0.15]"
+            }`}
           >
-            <option value="">All Employees</option>
-            {data.employees.map(e => (
-              <option key={e.id} value={e.id}>{e.name}</option>
+            <option value="" className="bg-[#0f172a] text-slate-200">All Team</option>
+            {data.employees.map((e) => (
+              <option key={e.id} value={e.id} className="bg-[#0f172a] text-slate-200">{e.name}</option>
             ))}
           </select>
-          <ChevronDown
-            size={12}
-            style={{ position: "absolute", right: 6, top: "50%", transform: "translateY(-50%)", color: "#9ca3af", pointerEvents: "none" }}
-          />
+          <ChevronDown size={12} className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
         </div>
 
-        {/* Reset Filters button */}
+        {/* Reset button */}
         {hasNonDefaultFilters && (
           <button
             id="filter-reset"
             onClick={resetFilters}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.25rem",
-              padding: "0.3rem 0.5rem",
-              border: "1px solid #fca5a5",
-              borderRadius: "0.5rem",
-              background: "#fef2f2",
-              color: "#dc2626",
-              fontSize: "0.75rem",
-              cursor: "pointer",
-              fontWeight: 500,
-            }}
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-semibold bg-rose-500/15 border border-rose-500/30 text-rose-400 hover:bg-rose-500/25 transition-colors"
           >
-            <X size={12} /> Reset
+            <X size={12} />
+            <span>Reset</span>
           </button>
         )}
 
-        {/* Right side utility icons */}
-        <button
-          id="btn-refresh"
-          title="Refresh view"
-          onClick={() => {}}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: 32,
-            height: 32,
-            borderRadius: "0.5rem",
-            border: "1px solid #e5e7eb",
-            background: "white",
-            cursor: "pointer",
-            color: "#6b7280",
-          }}
-        >
-          <RefreshCw size={14} />
-        </button>
-        <button
-          id="btn-notifications"
-          title="Notifications"
-          style={{
-            position: "relative",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: 32,
-            height: 32,
-            borderRadius: "0.5rem",
-            border: "1px solid #e5e7eb",
-            background: "white",
-            cursor: "pointer",
-            color: "#6b7280",
-          }}
-        >
-          <Bell size={14} />
-          <span
-            style={{
-              position: "absolute",
-              top: 6,
-              right: 6,
-              width: 6,
-              height: 6,
-              borderRadius: "50%",
-              background: "#dc2626",
-              border: "2px solid white",
-            }}
-          />
-        </button>
-
-        <button
-          id="btn-back-landing"
-          title="Back to Landing Page"
-          onClick={() => navigate("/")}
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.35rem",
-            padding: "0.38rem 0.75rem",
-            borderRadius: "0.5rem",
-            border: "1px solid #2563eb",
-            background: "#eff6ff",
-            color: "#1d4ed8",
-            fontSize: "0.75rem",
-            fontWeight: 600,
-            cursor: "pointer",
-            transition: "all 0.15s ease",
-            whiteSpace: "nowrap",
-          }}
-        >
-          <ArrowLeft size={13} />
-          <span>Marketing Site</span>
-        </button>
+        {/* Utility icons */}
+        <div className="flex items-center gap-1.5 pl-1 border-l border-white/[0.08]">
+          <button
+            id="btn-refresh"
+            title="Refresh View"
+            onClick={() => {}}
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/[0.06] border border-white/[0.06] transition-colors"
+          >
+            <RefreshCw size={14} />
+          </button>
+          <button
+            id="btn-notifications"
+            title="Notifications"
+            className="relative p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/[0.06] border border-white/[0.06] transition-colors"
+          >
+            <Bell size={14} />
+            <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-rose-500" />
+          </button>
+          <button
+            id="btn-back-landing"
+            title="Back to Landing Page"
+            onClick={() => navigate("/")}
+            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold text-blue-300 bg-blue-500/15 hover:bg-blue-600 hover:text-white border border-blue-500/30 transition-all ml-1"
+          >
+            <ArrowLeft size={12} />
+            <span className="hidden sm:inline">Marketing Site</span>
+          </button>
+        </div>
       </div>
 
-      {/* Custom Date Range Modal / Popover */}
+      {/* Custom Date Range Modal */}
       {showCustomModal && (
         <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: "rgba(0, 0, 0, 0.4)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 100,
-          }}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-150"
           onClick={() => setShowCustomModal(false)}
         >
           <div
-            style={{
-              background: "white",
-              borderRadius: "0.75rem",
-              padding: "1.5rem",
-              width: 340,
-              boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-            }}
-            onClick={e => e.stopPropagation()}
+            className="bg-[#0f172a] border border-white/[0.12] rounded-2xl p-6 w-full max-w-sm shadow-2xl shadow-black/80"
+            onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
-              <h3 style={{ fontSize: "0.9375rem", fontWeight: 600, color: "#111827", margin: 0 }}>Select Custom Date Range</h3>
+            <div className="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.08]">
+              <h3 className="text-sm font-bold text-white">Select Custom Date Range</h3>
               <button
                 onClick={() => setShowCustomModal(false)}
-                style={{ background: "transparent", border: "none", cursor: "pointer", color: "#9ca3af" }}
+                className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-white/[0.06]"
               >
                 <X size={16} />
               </button>
             </div>
-            <form onSubmit={handleApplyCustom} style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
+
+            <form onSubmit={handleApplyCustom} className="space-y-4">
               <div>
-                <label style={{ display: "block", fontSize: "0.75rem", fontWeight: 500, color: "#4b5563", marginBottom: "0.25rem" }}>
-                  Start Date
-                </label>
+                <label className="block text-xs font-medium text-slate-300 mb-1.5">Start Date</label>
                 <input
                   id="custom-range-start"
                   type="date"
                   value={customStart}
-                  onChange={e => setCustomStart(e.target.value)}
-                  style={{
-                    width: "100%",
-                    padding: "0.45rem 0.6rem",
-                    border: "1px solid #d1d5db",
-                    borderRadius: "0.375rem",
-                    fontSize: "0.8125rem",
-                  }}
+                  onChange={(e) => setCustomStart(e.target.value)}
+                  className="w-full px-3 py-2 rounded-xl text-xs bg-white/[0.04] border border-white/[0.1] text-white focus:outline-none focus:border-blue-500"
                   required
                 />
               </div>
               <div>
-                <label style={{ display: "block", fontSize: "0.75rem", fontWeight: 500, color: "#4b5563", marginBottom: "0.25rem" }}>
-                  End Date
-                </label>
+                <label className="block text-xs font-medium text-slate-300 mb-1.5">End Date</label>
                 <input
                   id="custom-range-end"
                   type="date"
                   value={customEnd}
-                  onChange={e => setCustomEnd(e.target.value)}
-                  style={{
-                    width: "100%",
-                    padding: "0.45rem 0.6rem",
-                    border: "1px solid #d1d5db",
-                    borderRadius: "0.375rem",
-                    fontSize: "0.8125rem",
-                  }}
+                  onChange={(e) => setCustomEnd(e.target.value)}
+                  className="w-full px-3 py-2 rounded-xl text-xs bg-white/[0.04] border border-white/[0.1] text-white focus:outline-none focus:border-blue-500"
                   required
                 />
               </div>
-              <div style={{ display: "flex", justifyContent: "flex-end", gap: "0.5rem", marginTop: "0.5rem" }}>
+              <div className="flex items-center justify-end gap-2 pt-2">
                 <button
                   type="button"
                   onClick={() => setShowCustomModal(false)}
-                  style={{
-                    padding: "0.45rem 0.85rem",
-                    borderRadius: "0.375rem",
-                    border: "1px solid #e5e7eb",
-                    background: "white",
-                    fontSize: "0.75rem",
-                    color: "#4b5563",
-                    cursor: "pointer",
-                  }}
+                  className="px-3 py-1.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08]"
                 >
                   Cancel
                 </button>
                 <button
                   id="custom-range-apply"
                   type="submit"
-                  style={{
-                    padding: "0.45rem 0.85rem",
-                    borderRadius: "0.375rem",
-                    border: "none",
-                    background: "#2563eb",
-                    fontSize: "0.75rem",
-                    fontWeight: 500,
-                    color: "white",
-                    cursor: "pointer",
-                  }}
+                  className="px-4 py-1.5 rounded-xl text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 shadow-md shadow-blue-500/20"
                 >
                   Apply Range
                 </button>

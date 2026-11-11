@@ -1,4 +1,17 @@
-import { BarChart3, TrendingUp, Users, FileText, ShoppingCart, CreditCard, Activity, Settings, ChevronRight, ArrowLeft } from "lucide-react";
+import React from "react";
+import {
+  BarChart3,
+  TrendingUp,
+  Users,
+  FileText,
+  ShoppingCart,
+  CreditCard,
+  Activity,
+  Settings,
+  ChevronRight,
+  ArrowLeft,
+  Sparkles,
+} from "lucide-react";
 import { useNavigation } from "../../context/NavigationContext";
 
 interface NavItem {
@@ -26,137 +39,91 @@ export default function Sidebar({ active, onSelect }: SidebarProps) {
   const { navigate } = useNavigation();
 
   return (
-    <aside className="sidebar flex flex-col" style={{ minHeight: "100vh", background: "#1e293b", width: 220, flexShrink: 0 }}>
-      {/* Logo */}
-      <div style={{ padding: "1.25rem 1rem 1rem", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", cursor: "pointer" }} onClick={() => navigate("/")} title="Back to Landing Page">
-          <div style={{
-            width: 34, height: 34, borderRadius: "0.5rem",
-            background: "linear-gradient(135deg, #2563eb, #7c3aed)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-          }}>
-            <BarChart3 size={18} color="white" />
+    <aside className="sidebar flex flex-col h-full bg-[#090d18] border-r border-white/[0.08] w-[230px] shrink-0">
+      {/* Brand Logo & Home Link */}
+      <div className="p-4 border-b border-white/[0.08]">
+        <div
+          onClick={() => navigate("/")}
+          className="flex items-center gap-3 cursor-pointer group"
+          title="Back to Landing Page"
+        >
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 via-indigo-600 to-violet-600 flex items-center justify-center shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform shrink-0">
+            <BarChart3 size={18} className="text-white" />
           </div>
           <div>
-            <div style={{ color: "white", fontWeight: 700, fontSize: "0.9375rem", lineHeight: 1.2 }}>BizPro</div>
-            <div style={{ color: "#94a3b8", fontSize: "0.6875rem", fontWeight: 500 }}>Analytics</div>
+            <div className="flex items-center gap-1.5">
+              <span className="text-white font-bold text-sm tracking-tight">BizPro</span>
+              <span className="text-[9px] font-semibold px-1 py-0.2 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                PRO
+              </span>
+            </div>
+            <div className="text-slate-400 text-[11px] font-medium">Business Intelligence</div>
           </div>
         </div>
       </div>
 
       {/* Nav */}
-      <nav style={{ flex: 1, padding: "0.75rem 0.625rem" }}>
+      <nav className="flex-1 p-3 overflow-y-auto">
+        {/* Back to Website Button */}
         <button
           id="sidebar-back-home"
           onClick={() => navigate("/")}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "0.5rem",
-            width: "100%",
-            padding: "0.45rem 0.625rem",
-            marginBottom: "0.75rem",
-            borderRadius: "0.375rem",
-            background: "rgba(255,255,255,0.05)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            color: "#94a3b8",
-            fontSize: "0.75rem",
-            fontWeight: 500,
-            cursor: "pointer",
-            transition: "all 0.15s",
-          }}
-          onMouseEnter={e => {
-            (e.currentTarget as HTMLButtonElement).style.background = "rgba(37,99,235,0.2)";
-            (e.currentTarget as HTMLButtonElement).style.color = "#60a5fa";
-          }}
-          onMouseLeave={e => {
-            (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.05)";
-            (e.currentTarget as HTMLButtonElement).style.color = "#94a3b8";
-          }}
+          className="w-full flex items-center gap-2 px-3 py-2 mb-3 rounded-xl bg-white/[0.03] hover:bg-blue-600/15 border border-white/[0.06] hover:border-blue-500/30 text-slate-300 hover:text-blue-300 text-xs font-medium transition-all group"
         >
-          <ArrowLeft size={13} />
-          <span>Back to Landing Page</span>
+          <ArrowLeft size={13} className="group-hover:-translate-x-0.5 transition-transform" />
+          <span>Marketing Website</span>
         </button>
-        <div style={{ marginBottom: "0.25rem" }}>
-          <div style={{ color: "#64748b", fontSize: "0.6875rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", padding: "0.25rem 0.5rem 0.5rem" }}>
-            Main Menu
+
+        <div className="mb-2">
+          <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-3 py-2">
+            Analytical Modules
           </div>
-          {NAV_ITEMS.map(item => {
-            const Icon = item.icon;
-            const isActive = active === item.id;
-            return (
-              <button
-                key={item.id}
-                id={`nav-${item.id}`}
-                aria-current={isActive ? "page" : undefined}
-                onClick={() => onSelect(item.id)}
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.625rem",
-                  padding: "0.5rem 0.75rem",
-                  borderRadius: "0.5rem",
-                  background: isActive ? "rgba(37,99,235,0.25)" : "transparent",
-                  border: "none",
-                  cursor: "pointer",
-                  color: isActive ? "#60a5fa" : "#94a3b8",
-                  fontWeight: isActive ? 600 : 400,
-                  fontSize: "0.875rem",
-                  textAlign: "left",
-                  marginBottom: "0.125rem",
-                  transition: "all 0.15s",
-                }}
-                onMouseEnter={e => {
-                  if (!isActive) (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.05)";
-                }}
-                onMouseLeave={e => {
-                  if (!isActive) (e.currentTarget as HTMLButtonElement).style.background = "transparent";
-                }}
-              >
-                <Icon size={16} />
-                <span style={{ flex: 1 }}>{item.label}</span>
-                {isActive && <ChevronRight size={14} />}
-              </button>
-            );
-          })}
+          <div className="space-y-1">
+            {NAV_ITEMS.map((item) => {
+              const Icon = item.icon;
+              const isActive = active === item.id;
+              return (
+                <button
+                  key={item.id}
+                  id={`nav-${item.id}`}
+                  aria-current={isActive ? "page" : undefined}
+                  onClick={() => onSelect(item.id)}
+                  className={`w-full relative flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium transition-all text-left ${
+                    isActive
+                      ? "bg-gradient-to-r from-blue-600/25 to-indigo-600/15 text-blue-300 border border-blue-500/30 shadow-sm shadow-blue-500/10 font-semibold"
+                      : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04] border border-transparent"
+                  }`}
+                >
+                  {isActive && (
+                    <span className="absolute left-1 top-1.5 bottom-1.5 w-1 rounded-full bg-blue-500 shadow-sm shadow-blue-400" />
+                  )}
+                  <Icon size={16} className={isActive ? "text-blue-400" : "text-slate-400"} />
+                  <span className="flex-1">{item.label}</span>
+                  {isActive && <ChevronRight size={13} className="text-blue-400" />}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </nav>
 
-      {/* Bottom */}
-      <div style={{ padding: "0.75rem", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+      {/* User / Settings Footer */}
+      <div className="p-3 border-t border-white/[0.08] bg-[#070b14]">
         <button
           id="nav-settings"
-          style={{
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            gap: "0.625rem",
-            padding: "0.5rem 0.75rem",
-            borderRadius: "0.5rem",
-            background: "transparent",
-            border: "none",
-            cursor: "pointer",
-            color: "#64748b",
-            fontSize: "0.875rem",
-          }}
+          className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium text-slate-400 hover:text-slate-200 hover:bg-white/[0.04] transition-colors mb-2"
         >
-          <Settings size={16} />
-          Settings
+          <Settings size={15} />
+          <span>Workspace Settings</span>
         </button>
-        <div style={{
-          display: "flex", alignItems: "center", gap: "0.625rem",
-          padding: "0.75rem 0.625rem 0.25rem",
-        }}>
-          <div style={{
-            width: 30, height: 30, borderRadius: "50%",
-            background: "linear-gradient(135deg, #7c3aed, #2563eb)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: "0.6875rem", fontWeight: 700, color: "white",
-          }}>KN</div>
-          <div>
-            <div style={{ color: "#f1f5f9", fontSize: "0.75rem", fontWeight: 500 }}>Kamala Nair</div>
-            <div style={{ color: "#64748b", fontSize: "0.6875rem" }}>General Manager</div>
+
+        <div className="flex items-center gap-2.5 p-2 rounded-xl bg-white/[0.02] border border-white/[0.04]">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-blue-600 flex items-center justify-center text-[11px] font-bold text-white shrink-0 shadow-sm">
+            KN
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="text-xs font-semibold text-white truncate">Kamala Nair</div>
+            <div className="text-[10px] text-slate-400 truncate">General Manager</div>
           </div>
         </div>
       </div>

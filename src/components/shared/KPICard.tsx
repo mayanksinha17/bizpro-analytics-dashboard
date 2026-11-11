@@ -1,3 +1,4 @@
+import React from "react";
 import { TrendingUp, TrendingDown } from "lucide-react";
 import type { KPIComparison } from "../../types";
 import { formatCurrencyCompact, formatPercent, formatNumber } from "../../utils/format";
@@ -25,7 +26,15 @@ function fmt(value: number, type: ValueType) {
 }
 
 export default function KPICard({
-  id, title, kpi, valueType = "number", icon: Icon, iconColor = "#2563eb", iconBg = "#eff6ff", subtitle, onClick,
+  id,
+  title,
+  kpi,
+  valueType = "number",
+  icon: Icon,
+  iconColor = "#3b82f6",
+  iconBg,
+  subtitle,
+  onClick,
 }: KPICardProps) {
   const isPos = kpi.isPositive;
   const changeAbs = Math.abs(kpi.changePercent);
@@ -33,40 +42,54 @@ export default function KPICard({
   return (
     <div
       id={id}
-      className="card kpi-card"
       onClick={onClick}
-      style={{ transition: "box-shadow 0.2s, transform 0.15s", cursor: onClick ? "pointer" : "default" }}
-      onMouseEnter={e => {
-        (e.currentTarget as HTMLDivElement).style.boxShadow = "var(--shadow-card-hover)";
-        if (onClick) (e.currentTarget as HTMLDivElement).style.transform = "translateY(-1px)";
-      }}
-      onMouseLeave={e => {
-        (e.currentTarget as HTMLDivElement).style.boxShadow = "var(--shadow-card)";
-        if (onClick) (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
-      }}
+      className={`rounded-2xl bg-[#0f172a]/85 border border-white/[0.08] p-4 sm:p-5 backdrop-blur-md transition-all duration-200 group flex flex-col justify-between ${
+        onClick
+          ? "cursor-pointer hover:border-blue-500/40 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-500/10"
+          : "hover:border-white/[0.14]"
+      }`}
     >
-      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
-        <p className="kpi-label">{title}</p>
-        {Icon && (
-          <div style={{
-            width: 36, height: 36, borderRadius: "0.5rem",
-            background: iconBg, display: "flex", alignItems: "center", justifyContent: "center",
-          }}>
-            <Icon size={18} color={iconColor} />
-          </div>
+      <div>
+        <div className="flex items-center justify-between gap-2 mb-3">
+          <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 group-hover:text-slate-300 transition-colors">
+            {title}
+          </p>
+          {Icon && (
+            <div
+              className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border border-white/[0.06] transition-transform group-hover:scale-105"
+              style={{
+                backgroundColor: iconBg ? `${iconBg}20` : "rgba(59, 130, 246, 0.12)",
+                color: iconColor,
+              }}
+            >
+              <Icon size={16} />
+            </div>
+          )}
+        </div>
+
+        <p className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white font-mono">
+          {fmt(kpi.current, valueType)}
+        </p>
+
+        {subtitle && (
+          <p className="text-xs text-slate-400 mt-1 truncate">
+            {subtitle}
+          </p>
         )}
       </div>
-      <p className="kpi-value">{fmt(kpi.current, valueType)}</p>
-      {subtitle && <p style={{ fontSize: "0.75rem", color: "var(--color-text-muted)" }}>{subtitle}</p>}
-      <div style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>
-        {isPos
-          ? <TrendingUp size={13} color="var(--color-success)" />
-          : <TrendingDown size={13} color="var(--color-danger)" />
-        }
-        <span className={isPos ? "kpi-change-pos" : "kpi-change-neg"}>
-          {isPos ? "+" : "-"}{formatPercent(changeAbs, 1)}
+
+      <div className="flex items-center gap-2 mt-4 pt-3 border-t border-white/[0.06] text-xs">
+        <span
+          className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md font-semibold text-[11px] ${
+            isPos
+              ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/25"
+              : "bg-rose-500/15 text-rose-400 border border-rose-500/25"
+          }`}
+        >
+          {isPos ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
+          <span>{isPos ? "+" : "-"}{formatPercent(changeAbs, 1)}</span>
         </span>
-        <span style={{ fontSize: "0.7rem", color: "var(--color-text-muted)" }}>vs prev period</span>
+        <span className="text-[11px] text-slate-400">vs prev period</span>
       </div>
     </div>
   );

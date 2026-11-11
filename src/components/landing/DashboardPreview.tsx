@@ -22,6 +22,7 @@ import {
   Filter,
 } from "lucide-react";
 import { useNavigation } from "../../context/NavigationContext";
+import CustomChartTooltip from "../shared/ChartTooltip";
 
 // Sample verified data matching BizPro deterministic model
 const REVENUE_TREND_DATA = [
@@ -225,19 +226,10 @@ export default function DashboardPreview() {
                             <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
                           </linearGradient>
                         </defs>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
+                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.05)" />
                         <XAxis dataKey="month" stroke="#64748b" fontSize={11} tickLine={false} />
                         <YAxis stroke="#64748b" fontSize={11} tickLine={false} tickFormatter={(v) => `₹${v}L`} />
-                        <Tooltip
-                          contentStyle={{
-                            backgroundColor: "#0f172a",
-                            borderColor: "rgba(255,255,255,0.1)",
-                            borderRadius: "0.5rem",
-                            fontSize: "12px",
-                            color: "#fff",
-                          }}
-                          formatter={(value: any) => [`₹${value} Lakhs`, ""]}
-                        />
+                        <Tooltip content={<CustomChartTooltip valueFormatter={(v) => `₹${v} Lakhs`} />} />
                         <Area
                           type="monotone"
                           dataKey="revenue"

@@ -27,7 +27,8 @@
 | **Desktop Landing Page (1440px)** | [`screenshots/desktop.png`](screenshots/desktop.png) | High-contrast hero, value proof metrics, interactive product preview |
 | **Mobile Landing Page (390px)** | [`screenshots/mobile.png`](screenshots/mobile.png) | Fluid typography, collapsible drawer navigation, touch-friendly CTAs |
 | **Full Page Landing Showcase** | [`screenshots/fullpage.png`](screenshots/fullpage.png) | Complete SaaS narrative: Features, How It Works, Pricing, Contact, Footer |
-| **Interactive Analytics App (`/app`)** | [`screenshots/dashboard-app.png`](screenshots/dashboard-app.png) | Original 7-module dashboard with two-way marketing site navigation |
+| **Analytics Command Center (`/app`)** | [`screenshots/dashboard-app.png`](screenshots/dashboard-app.png) | Executive dark theme, Smart Operational Intelligence banner, Recharts |
+| **Mobile Dashboard Experience (390px)** | [`screenshots/dashboard-mobile.png`](screenshots/dashboard-mobile.png) | Responsive cards, touch-friendly filter controls, stacked insights |
 
 ---
 

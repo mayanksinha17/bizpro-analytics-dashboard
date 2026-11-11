@@ -37,7 +37,7 @@ function DashboardContent() {
   }[activeView];
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", background: "#f0f2f5", position: "relative" }}>
+    <div className="dashboard-theme" style={{ display: "flex", minHeight: "100vh", background: "#080d1a", position: "relative" }}>
       {/* Mobile drawer backdrop overlay */}
       {isMobileMenuOpen && (
         <div
@@ -49,7 +49,8 @@ function DashboardContent() {
             left: 0,
             right: 0,
             bottom: 0,
-            background: "rgba(0, 0, 0, 0.5)",
+            background: "rgba(0, 0, 0, 0.7)",
+            backdropFilter: "blur(4px)",
             zIndex: 40,
             transition: "opacity 0.2s",
           }}
@@ -70,11 +71,14 @@ function DashboardContent() {
       {/* Main Content */}
       <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0, overflow: "hidden" }}>
         <TopBar title={VIEW_TITLES[activeView]} />
-        <main style={{ flex: 1, padding: "1.125rem", overflowY: "auto", overflowX: "hidden" }}>
+        <main style={{ flex: 1, padding: "1.25rem", overflowY: "auto", overflowX: "hidden", background: "#080d1a" }}>
           {panel}
         </main>
-        <footer style={{ padding: "0.625rem 1.125rem", borderTop: "1px solid #e5e7eb", background: "white", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "0.72rem", color: "#9ca3af", flexWrap: "wrap", gap: "0.5rem" }}>
-          <span>BizPro Analytics Dashboard &copy; 2026 — All metrics computed from internal data</span>
+        <footer style={{ padding: "0.75rem 1.25rem", borderTop: "1px solid rgba(255,255,255,0.08)", background: "#060a14", display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "0.75rem", color: "#64748b", flexWrap: "wrap", gap: "0.5rem" }}>
+          <span className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            BizPro Analytics Engine &copy; 2026 — Deterministic Relational Compute
+          </span>
           <span>Data as of: 19 Oct 2026</span>
         </footer>
       </div>
