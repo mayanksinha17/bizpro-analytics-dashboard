@@ -1,4 +1,6 @@
+import React from "react";
 import { DashboardProvider, useDashboard } from "./context/DashboardContext";
+import { NavigationProvider, useNavigation } from "./context/NavigationContext";
 import Sidebar from "./components/layout/Sidebar";
 import TopBar from "./components/layout/TopBar";
 import OverviewPanel from "./components/dashboard/OverviewPanel";
@@ -8,6 +10,7 @@ import DealsPanel from "./components/dashboard/DealsPanel";
 import OrdersPanel from "./components/dashboard/OrdersPanel";
 import PaymentsPanel from "./components/dashboard/PaymentsPanel";
 import TeamPanel from "./components/dashboard/TeamPanel";
+import LandingPage from "./components/landing/LandingPage";
 import type { ActiveView } from "./types";
 
 const VIEW_TITLES: Record<ActiveView, string> = {
@@ -79,10 +82,24 @@ function DashboardContent() {
   );
 }
 
+function AppRouter() {
+  const { currentPath } = useNavigation();
+
+  if (currentPath === "/app") {
+    return (
+      <DashboardProvider>
+        <DashboardContent />
+      </DashboardProvider>
+    );
+  }
+
+  return <LandingPage />;
+}
+
 export default function App() {
   return (
-    <DashboardProvider>
-      <DashboardContent />
-    </DashboardProvider>
+    <NavigationProvider>
+      <AppRouter />
+    </NavigationProvider>
   );
 }

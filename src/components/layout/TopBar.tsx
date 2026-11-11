@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Bell, RefreshCw, Calendar, ChevronDown, X, Check, Menu } from "lucide-react";
+import { Bell, RefreshCw, Calendar, ChevronDown, X, Check, Menu, ArrowLeft } from "lucide-react";
 import { format } from "date-fns";
 import { useDashboard } from "../../context/DashboardContext";
+import { useNavigation } from "../../context/NavigationContext";
 import { DATE_PRESETS } from "../../analytics/utils";
 import type { Department, ServiceCategory } from "../../types";
 import type { DatePreset } from "../../analytics/utils";
@@ -23,6 +24,7 @@ interface TopBarProps {
 }
 
 export default function TopBar({ title }: TopBarProps) {
+  const { navigate } = useNavigation();
   const {
     filter,
     activePreset,
@@ -451,6 +453,30 @@ export default function TopBar({ title }: TopBarProps) {
               border: "2px solid white",
             }}
           />
+        </button>
+
+        <button
+          id="btn-back-landing"
+          title="Back to Landing Page"
+          onClick={() => navigate("/")}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.35rem",
+            padding: "0.38rem 0.75rem",
+            borderRadius: "0.5rem",
+            border: "1px solid #2563eb",
+            background: "#eff6ff",
+            color: "#1d4ed8",
+            fontSize: "0.75rem",
+            fontWeight: 600,
+            cursor: "pointer",
+            transition: "all 0.15s ease",
+            whiteSpace: "nowrap",
+          }}
+        >
+          <ArrowLeft size={13} />
+          <span>Marketing Site</span>
         </button>
       </div>
 
