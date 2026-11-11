@@ -7,7 +7,6 @@
 [![Vite 8](https://img.shields.io/badge/Vite-8.3.4-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-4.3.3-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Recharts](https://img.shields.io/badge/Recharts-3.10.1-22C55E?style=for-the-badge&logo=chartdotjs&logoColor=white)](https://recharts.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-F59E0B?style=for-the-badge)](LICENSE)
 
 A modern, responsive SaaS business intelligence platform combining an interactive marketing website with a comprehensive revenue operations dashboard.
 
@@ -88,7 +87,7 @@ Responsive analytics layout with adaptive horizontal filter scrolling, full-widt
   * Fields: Full Name, Work Email, Company Name, Interested Plan, and Message.
   * Client-side validation: Required field guards, standard email format regex validation (`\S+@\S+\.\S+`), and minimum character length constraints.
   * Simulated dispatch state (~700ms local timeout) followed by an enterprise confirmation card and form reset option.
-* **Footer**: Brand identity, categorized navigation columns (Product, Modules, Assignment), operational status beacon (*"● All Systems Operational"*), and smooth "Back to Top" scrolling.
+* **Footer**: Brand identity, categorized navigation columns (Product, Modules, Assignment), operational status beacon (*"● Demo Environment"*), and smooth "Back to Top" scrolling.
 
 ---
 
@@ -362,17 +361,17 @@ This project was developed for the **Sankar Group Front-End Development Internsh
 ### Key Deliverables Satisfied
 - [x] **Dual-Route SaaS Architecture**: Transformed existing analytics dashboard into a dual-mode application with a premium marketing landing page at `/` and the enterprise dashboard preserved at `/app`.
 - [x] **Brand & Visual Identity**: Deep navy, white, and electric blue color palette with subtle gradients, refined glassmorphic surfaces, and professional typography.
-- [x] **Modular Component Structure**: 8 separate marketing components in `src/components/landing/` and 7 analytics panels in `src/components/dashboard/`.
+- [x] **Modular Component Structure**: 9 separate marketing components in `src/components/landing/` and 7 analytics panels in `src/components/dashboard/`.
 - [x] **Interactive Previews**: Realistic dashboard preview showcasing live interactive Recharts visualizations.
 - [x] **Working Contact Experience**: Validated contact form with instant field validation, error indicators, and submission confirmation.
 - [x] **Documentation Integrity**: Complete technical documentation, screenshots, and architecture diagrams.
 
 ---
 
-## 👤 Author & License
+## 👤 Author & Project Context
 
-* **Author**: Mayank Kumar Sinha
+* **Author**: Kumar Mayank
 * **Email**: [mk3631780@gmail.com](mailto:mk3631780@gmail.com)
 * **GitHub**: [@mayanksinha17](https://github.com/mayanksinha17)
 * **Project Repository**: [bizpro-analytics-dashboard](https://github.com/mayanksinha17/bizpro-analytics-dashboard)
-* **License**: [MIT](LICENSE) — Feel free to use, modify, and distribute this codebase for educational and evaluation purposes.
+* **Project Status**: Sankar Group Front-End Development Internship Project Submission (Interactive Demonstration)
